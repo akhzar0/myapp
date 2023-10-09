@@ -13,7 +13,6 @@ const Authenticate=async(req,res,next)=>{
     }
     catch(err){
         res.status(401).send('No provide Token')
-        //console.log(err);
     }
 }
 module.exports=Authenticate;

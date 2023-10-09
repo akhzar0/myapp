@@ -18,6 +18,10 @@ const userSchema=new mongoose.Schema({
         type:String,
         required:true
     },
+    date:{
+        type:Date,
+        default: Date.now()
+    },
     tokens:[
         {
             token:{
@@ -47,9 +51,9 @@ userSchema.methods.generateAuthToken=async function(){
       return token
     }
     catch(err){
-        console.log(err);
+        
     }
 }
-const User=mongoose.model('akhzarWeb',userSchema);
+const User=mongoose.model('signup',userSchema);
 
 module.exports =User;

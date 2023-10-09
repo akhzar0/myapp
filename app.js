@@ -2,7 +2,7 @@ const dotenv=require('dotenv');
 const express=require('express');
 const app=express();
 dotenv.config({path:'./config.env'});
-const PORT=process.env.PORT || 5000;
+const path=require('path');
 
 // link conn file
 require('./db/conn');
@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(require('./router/auth'));
 
 // http port
+const PORT=process.env.PORT || 5000;
 app.listen(PORT,()=>{
-    console.log(`running ${PORT}`);
+    
 });

@@ -1,5 +1,4 @@
 const express=require('express');
-// const jwt =require("jsonwebtoken");
 const bcrypt=require('bcrypt');
 const router=express.Router();
 const User=require('../modal/userSchema');
@@ -30,7 +29,7 @@ router.post('/signup',async(req,res)=>{
         res.status(201).json({message:"User Successfully"});
     }}
     catch(err){
-      console.log(err);
+      
     }
 })
 
@@ -47,7 +46,7 @@ router.post('/signin',async(req,res)=>{
             const isMatch=await bcrypt.compare(password,userLogin.password);
             const token = await userLogin.generateAuthToken();
             res.cookie("jwttoken",token,{
-                expires:new Date(Date.now()+ 3600000),
+                expires:new Date(Date.now()+ 300000),
                 httpOnly : true
             })
             if(!isMatch){
@@ -63,13 +62,13 @@ router.post('/signin',async(req,res)=>{
       
     }
     catch(err){
-        console.log(err);
+        
     }
 })
 
 router.use(cookiParser());
 router.get('/portfolio',authenticate,(req,res)=>{
-    console.log('my port');
+    
     res.send(req.rootUser);
 });
 
